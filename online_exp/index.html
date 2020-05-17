@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <script src="https://bcs-iitk.github.io/color-context/color-context/online-exp/jspsych.js"></script>
+    <script src="https://bcs-iitk.github.io/color-context/color-context/online-exp/plugins/jspsych-html-button-response.js"></script>
+    <link rel="stylesheet" href="https://bcs-iitk.github.io/color-context/color-context/online-exp/css/jspsych.css">
+  </head>
+  <body></body>
+  <script>
+    var git_repo_dir = 'https://bcs-iitk.github.io/color-context/color-context/online-exp/'
+    var num_stimuli = 2
+    var stimuli_start_idx = 1
+    // Create color scale bar for different questions...
+    var scale = [];
+    var i;
+    for (i = 1; i < 6; i++) {
+      scale.push('<img src="' + git_repo_dir + 'img/color/' + i.toString() + '.png" style="width:100px;height:100px;">');
+    }
+
+    // Generate the list of stimuli from images...
+    var stim = [];
+    for (i = stimuli_start_idx; i < num_stimuli+stimuli_start_idx; i++) {
+      stim.push('<img src="' + git_repo_dir + 'img/stim/' + i.toString() + '.jpg" style="max-height:400px;"><br><br><br>');
+    }
+
+    // Create jsPsych timeline
+    var timeline = [];
+    var instructions = {
+      type: 'html-button-response',
+      stimulus: '<p>Add some instructions related to the experiment</p>',
+      choices: ['Ready to start']
+    }
+    timeline.push(instructions);
+
+    for (i = stimuli_start_idx; i < num_stimuli+stimuli_start_idx; i++) {
+      timeline.push({
+        type: 'html-button-response',
+        stimulus: stim[i-1],
+        choices: scale,
+        prompt: "<p>What color will you associate to this picture?</p>"
+      });
+    }
+
+    function save_data(){
+      var all_data = jsPsych.data.get();
+      google.script.run.saveData(all_data.select('button_pressed').values);
+    }
+
+    var instructions = {
+      type: 'html-button-response',
+      stimulus: '<p>Thank you for completing this survey! Kindly press the Send button to send the data to us</p>',
+      choices: ['Send'],
+      on_finish: function() {
+          save_data();
+      }
+    }
+    timeline.push(instructions);
+
+    // Start the jsPsych experiment
+    jsPsych.init({
+      timeline: timeline,
+      show_progress_bar: true,
+    });
+
+  </script>
+</html>
