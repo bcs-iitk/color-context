@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>
+      BCS Experiment Links
+    </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  </head>
+  <body>
+    <main role="main" class="container">
+      <div class="col-xs-12 col-md-12">
+        <br><br><br><br><br>
+        <div class="row justify-content-md-center justify-content-xs-center border-bottom" style="padding-bottom: 2rem;">
+            <div class="hero">
+              <h1 class="display-6">Please kindly do the following two experiments</h1>
+            </div>
+        </div>
+        <br><br>
+        <div class="row justify-content-md-center justify-content-xs-center">
+            <center><div id="exp1"></div></center>
+        </div>
+        <br><br>
+        <div class="row justify-content-md-center justify-content-xs-center">
+          <center><div id="exp2"><a href="https://script.google.com/macros/s/AKfycbwKa-bIW5Kq6jP4IzTdgt2dh42Ki_SjAum2MMbZs4YOi7SqVyc/exec"><button type="button" class="btn btn-outline-dark"  style="padding: 1rem 2rem;">Experiment 2</button></a></div></center>
+        </div>
+        <br><br>
+        <div class="row justify-content-md-center justify-content-xs-center bg-light"  style="padding: 2rem;">
+          If there’s some issue with the surveys link (like not running) or in case of any clarification, please contact Shivi Gupta (shivigup@iitk.ac.in). Thank you!
+        </div>
+      </div>
+
+    </main>
+  </body>
+  <script>
+    var links = [];
+    links.push('https://script.google.com/macros/s/AKfycbyk3EtFERMEPtHIaPtD_ikKk8GlCxrMjJDtGRP8BPFMdv8gfKX-/exec');
+    links.push('https://script.google.com/macros/s/AKfycbwYmfvi8ClRQRdXVKcDKqRYJKJ9EjJp9DgOrmiWSIFkv4BC5E-v/exec');
+    var i = Math.floor(Math.random() * 2);
+    txt = "<a href=" + links[i] + ' ><button type="button" class="btn btn-outline-dark" style="padding: 1rem 2rem;">Experiment 1</button></a>'
+    document.getElementById("exp1").innerHTML = txt;
+  </script>
+</html>
